@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Author;
+use App\Models\Author;
+use App\Http\Resources\AuthorResource;
 use Illuminate\Http\Request;
 
 class AuthorController extends Controller
@@ -15,7 +16,8 @@ class AuthorController extends Controller
 
     public function showOneAuthor($id)
     {
-        return response()->json(Author::find($id));
+
+        return response()->json(new AuthorResource(Author::find($id)));
     }
 
     public function create(Request $request)
